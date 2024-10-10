@@ -1,0 +1,6 @@
+fastapi[standard]
+langgraph
+langchain_openai
+langchain_core
+langserve[server]
+requests
