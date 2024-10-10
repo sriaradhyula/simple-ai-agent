@@ -5,6 +5,7 @@ from langgraph.graph import START, StateGraph
 from langgraph.prebuilt import tools_condition, ToolNode
 from langgraph.checkpoint.memory import MemorySaver
 from langchain_core.tools import tool
+import asyncio
 
 from fastapi import FastAPI
 
@@ -211,7 +212,12 @@ def ask_question(question: ChatBotQuestion):
   response = agent.interact(question.question)
   return str(response)
 
+async def main():
+  config = uvicorn.Config(app, host="localhost", port=8000)
+  server = uvicorn.Server(config)
+  await server.serve()
+
 if __name__ == '__main__':
   # Uncomment the line below to create the langgraph image
   # agent.create_graph_image()
-  uvicorn.run(app, host="localhost", port=8000)
+  asyncio.run(main())
