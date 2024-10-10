@@ -212,11 +212,6 @@ def ask_question(question: ChatBotQuestion):
   return str(response)
 
 if __name__ == '__main__':
+  # Uncomment the line below to create the langgraph image
   # agent.create_graph_image()
   uvicorn.run(app, host="localhost", port=8000)
-
-  uvicorn.run(app, host="localhost", port=8000)
-
-      config = uvicorn.Config(app)
-    server = uvicorn.Server(config)
-    await server.serve()
