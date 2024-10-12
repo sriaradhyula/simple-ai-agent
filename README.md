@@ -99,7 +99,7 @@ print(response.text)
 
 >_The description of the repository is: "This repo demonstrates building a simple ReAct AI agent to perform tasks such as retrieving GitHub repo details via REST APIs, using LangGraph to define workflows."_
 >
->_The topics of the repository are: "agent, ai, langgraph"_
+>_The topics of the repository are: "agent, ai, langgraph, python"_
 >
 >_Matching topics in the description and topics list are: "agent", "ai", and "langgraph"._
 
@@ -111,28 +111,31 @@ print(response.text)
 
 ```
 --------------------------------------------------------------------------------
-Type: HumanMessage, Content: check if the repo description has any maching topics in the repo topics in repo simple-ai-agent in sriaradhyula org
+Type: HumanMessage, Content: check if the repo description has any matching topics in the repo topics in repo simple-ai-agent in sriaradhyula org
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 Type: AIMessage, Content:
-Tool Call ID: call_XtAgKjgkbx96gJKdjPFwlEYV, Name: get_github_repo_topics, Arguments: {"repo_name":"simple-ai-agent","org_name":"sriaradhyula"}
+Tool Call ID: call_K4aY0WTQxRVJjtQBsnUsjN0A, Name: get_github_repo_description, Arguments: {"repo_name": "simple-ai-agent", "org_name": "sriaradhyula"}
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-Type: ToolMessage, Content: agent, ai, langgraph
+Type: ToolMessage, Content: This repo demonstrates building a simple ReAct AI agent to perform tasks such as retrieving GitHub repo details via REST APIs, using LangGraph to define workflows.
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-Type: AIMessage, Content: The topics for the "simple-ai-agent" repository in the "sriaradhyula" organization are: "agent", "ai", and "langgraph".
+Type: ToolMessage, Content: agent, ai, langgraph, python
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+Type: AIMessage, Content: The description of the repository "simple-ai-agent" is:
 
-Now, let's check if any of these topics match words in the repository description:
+"This repo demonstrates building a simple ReAct AI agent to perform tasks such as retrieving GitHub repo details via REST APIs, using LangGraph to define workflows."
 
-- Description: "This repo demonstrates building a simple ReAct AI agent to perform tasks such as retrieving GitHub repo details via REST APIs, using LangGraph to define workflows."
+The topics of the repository are:
 
-Matching topics:
-- "agent" matches "agent" in the description.
-- "ai" matches "AI" in the description.
-- "langgraph" matches "LangGraph" in the description.
+"agent, ai, langgraph, python"
 
-All the topics match words in the repository description.
+Matching topics in the description and topics list are:
+- "ai"
+- "agent"
+- "langgraph"
 --------------------------------------------------------------------------------
 ```
 
