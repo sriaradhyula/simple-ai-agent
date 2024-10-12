@@ -115,7 +115,7 @@ class SimpleAIAgent():
     # System message
     sys_msg = SystemMessage(content=(
       "You are a helpful Assistant tasked with performing tasks.\n"
-      "You can assist with github repo operations \n"
+      "You can assist with github repo operations.\n"
     ), pretty_repr=True)
 
     # Node
