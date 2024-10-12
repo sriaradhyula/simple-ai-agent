@@ -82,7 +82,7 @@ class SimpleAIAgent():
     # Specify a thread
     self.config = {"configurable": {"thread_id": thread_id}}
 
-    # Initialize LLMFactory with the desired model name
+    # Get the desired model name
     model_name = os.getenv("LLM_MODEL_NAME", "openai")
 
     if model_name == "azure_openai":
