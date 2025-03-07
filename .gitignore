@@ -165,3 +165,6 @@ cython_debug/
 *.png
 
 .DS_Store
+
+# langgraph
+.langgraph_api

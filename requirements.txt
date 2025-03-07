@@ -4,3 +4,4 @@ langchain-openai
 langchain_core
 langserve[server]
 requests
+sse-starlette

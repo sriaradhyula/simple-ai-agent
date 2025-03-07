@@ -180,6 +180,8 @@ class SimpleAIAgent():
     print(f"Message history for thread_id {thread_id}: {json.dumps(message_history, default=str, indent=2)}")
     print(json.dumps(message_history, default=str, indent=2))
 
+  def get_graph(self):
+    return self.react_graph_memory
 class ChatBotQuestion(BaseModel):
   question: str
 
