@@ -1,6 +1,6 @@
 fastapi[standard]
 langgraph
-langchain_openai
+langchain-openai
 langchain_core
 langserve[server]
 requests
