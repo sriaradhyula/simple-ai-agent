@@ -1,10 +1,8 @@
 from langchain_openai import ChatOpenAI, AzureChatOpenAI
-from langgraph.graph import MessagesState
-from langchain_core.messages import HumanMessage, SystemMessage
-from langgraph.graph import START, StateGraph
-from langgraph.prebuilt import tools_condition, ToolNode
+from langchain_core.messages import HumanMessage
 from langgraph.checkpoint.memory import MemorySaver
 from langchain_core.tools import tool
+from deepagents.graph import create_deep_agent
 import asyncio
 
 from fastapi import FastAPI
@@ -110,42 +108,19 @@ class SimpleAIAgent():
       get_github_repo_topics
     ]
 
-    llm_with_tools = llm.bind_tools(tools)
-
     # System message
-    sys_msg = SystemMessage(content=(
+    sys_msg = (
       "You are a helpful Assistant tasked with performing tasks.\n"
       "You can assist with github repo operations.\n"
-    ), pretty_repr=True)
-
-    # Node
-    def assistant(state: MessagesState):
-      return {"messages": [llm_with_tools.invoke([sys_msg] + state["messages"])]}
-
-    # Graph
-    self.builder = StateGraph(MessagesState)
-
-    # Define nodes: They do the actual work
-    self.builder.add_node("simple_ai_agent", assistant)
-    self.builder.add_node("tools", ToolNode(tools))
-
-    # Define edges: these determine how the control flow moves
-    self.builder.add_edge(START, "simple_ai_agent")
-
-    # Add conditional edges
-    self.builder.add_conditional_edges(
-      "simple_ai_agent",
-      tools_condition,
-      "tools"
     )
 
-    # Add an edge to the tool node
-    self.builder.add_edge("tools", "simple_ai_agent")
-
     checkpointer = MemorySaver()
-    self.react_graph_memory = self.builder.compile(checkpointer=checkpointer)
-
-    self.react_graph_memory = self.builder.compile(checkpointer=checkpointer)
+    self.react_graph_memory = create_deep_agent(
+      model=llm,
+      tools=tools,
+      system_prompt=sys_msg,
+      checkpointer=checkpointer
+    )
 
   def interact(self, human_message:str):
     try:

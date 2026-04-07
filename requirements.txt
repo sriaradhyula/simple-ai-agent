@@ -5,3 +5,4 @@ langchain_core
 langserve[server]
 requests
 sse-starlette
+deepagents
